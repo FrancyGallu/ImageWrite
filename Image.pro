@@ -1,5 +1,7 @@
 TARGET=ImageTest
 
+CONFIG -= app_bundle
+
 SOURCES += $$PWD/src/main.cpp  \
            $$PWD/src/Image.cpp
 
