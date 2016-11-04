@@ -5,26 +5,25 @@
 
 int main()
 {
-    constexpr size_t width = 1024;
-    constexpr size_t height = 1024;
+    constexpr size_t width=200;
+      constexpr size_t height=200;
+      std::cout<<"testing image\n";
+      Image test(width,height);
 
-    std::cout<<"testing image\n";
-    Image test(width,height);
+      for(int frame=0; frame<width; ++frame )
+      {
+        test.clearScreen(255,255,255);
+        for(size_t x=0; x<frame; ++x)
+        {
+          for(size_t y=80; y<120; ++y)
+            test.setPixel(x,y,255,0,0);
+        }
 
-    std::random_device rd;
-    std::default_random_engine re(rd());
-    std::uniform_int_distribution<> colour(0,255);
-    std::uniform_int_distribution<> posx(0,width-1);
-    std::uniform_int_distribution<> posy(0,height-1);
+        char name[50];
+        sprintf(name,"frame.%04d.png",frame);
+        test.save(name);
+      }
 
-    test.clearScreen(255,255,255);
 
-    for(int i=0; i<123243346; ++i)
-    {
-        test.setPixel(posx(re), posy(re), colour(re), colour(re), colour(re));
-    }
-
-    test.save("random.png");
-
-    return EXIT_SUCCESS;
+      return EXIT_SUCCESS;
 }
